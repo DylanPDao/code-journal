@@ -26,12 +26,12 @@ textarea {
   border: 1px solid;
 }
 
+.entry-header {
+  margin-left: 0.8rem;
+}
+
 .textbox:focus,
 textarea:focus {
   outline: none;
   outline: 2px solid #552b80;
-}
-
-.entry-header {
-  margin-left: 0.8rem;
 }

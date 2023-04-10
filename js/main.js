@@ -10,7 +10,7 @@ $urlBox.addEventListener('input', function (e) {
   $img.setAttribute('src', link);
 });
 
-// Submit button function
+// Submit button function and reset
 document.addEventListener('submit', function (e) {
   const journalEntry = {};
   event.preventDefault();

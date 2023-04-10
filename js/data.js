@@ -13,7 +13,7 @@ window.addEventListener('beforeunload', function (e) {
   this.localStorage.setItem('entry-data', jsonString);
 });
 
-// load entries back in
+// parse data back in
 const previousJson = localStorage.getItem('entry-data');
 if (previousJson !== null) {
   data.entries = JSON.parse(previousJson);
