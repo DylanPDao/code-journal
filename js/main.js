@@ -20,5 +20,5 @@ $form.addEventListener('submit', function (e) {
   data.nextEntryId++;
   data.entries.unshift(journalEntry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  document.querySelector('form').reset();
+  $form.reset();
 });
