@@ -1,8 +1,6 @@
 // grab elements from HTML
 const $img = document.querySelector('.img-up');
 const $urlBox = document.querySelector('#url-box');
-const $titles = document.querySelector('#title-box');
-const $notes = document.querySelector('#notesbox');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -21,7 +19,5 @@ document.addEventListener('submit', function (e) {
   data.nextEntryId++;
   data.entries.unshift(journalEntry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $titles.value = '';
-  $urlBox.value = '';
-  $notes.value = '';
+  document.querySelector('form').reset();
 });
