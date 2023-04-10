@@ -9,13 +9,12 @@ var data = {
 
 // turn entries into JSON data
 window.addEventListener('beforeunload', function (e) {
-  const jsonString = JSON.stringify(data.entries);
+  const jsonString = JSON.stringify(data);
   this.localStorage.setItem('entry-data', jsonString);
 });
 
 // parse data back in
 const previousJson = localStorage.getItem('entry-data');
 if (previousJson !== null) {
-  data.entries = JSON.parse(previousJson);
-  data.nextEntryId = (data.entries[data.entries.length - 1].entryId) + 1;
+  data = JSON.parse(previousJson);
 }
