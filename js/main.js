@@ -18,8 +18,8 @@ document.addEventListener('submit', function (e) {
   journalEntry.imgUrl = $urlBox.value;
   journalEntry.notes = $notes.value;
   journalEntry.entryId = data.nextEntryId;
-  data.entries.push(journalEntry);
   data.nextEntryId++;
+  data.entries.push(journalEntry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $titles.value = '';
   $urlBox.value = '';
