@@ -18,17 +18,29 @@ $urlBox.addEventListener('input', function (e) {
 
 // Submit button function and reset
 $form.addEventListener('submit', function (e) {
-  event.preventDefault();
-  const journalEntry = {};
-  journalEntry.title = event.target.elements[0].value;
-  journalEntry.imgUrl = event.target.elements[1].value;
-  journalEntry.notes = event.target.elements[2].value;
-  journalEntry.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(journalEntry);
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
-  $ul.prepend(renderEntry(journalEntry));
+  if (data.editing === null) {
+    event.preventDefault();
+    const journalEntry = {};
+    journalEntry.title = event.target.elements[0].value;
+    journalEntry.imgUrl = event.target.elements[1].value;
+    journalEntry.notes = event.target.elements[2].value;
+    journalEntry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(journalEntry);
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $form.reset();
+    $ul.prepend(renderEntry(journalEntry));
+  } else {
+    const journalEntry = {};
+    journalEntry.title = $form.elements[0].value;
+    journalEntry.imgUrl = $form.elements[1].value;
+    journalEntry.notes = $form.elements[2].value;
+    journalEntry.entryId = data.editing.entryId;
+    renderEntry(journalEntry);
+    $form.reset();
+    $newEntry.textContent = 'New Entry';
+    data.editing = null;
+  }
 });
 
 // render entries
