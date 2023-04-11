@@ -57,3 +57,8 @@ ul {
   align-items: center;
   justify-content: space-between;
 }
+
+.go-entries:hover,
+.sv-btn:hover {
+  cursor: pointer;
+}
