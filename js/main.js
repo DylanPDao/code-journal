@@ -71,9 +71,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   for (let i = 0; i < data.entries.length; i++) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
-  if (data.view === 'entries') {
-    viewSwap('entries');
-  }
+  viewSwap(data.view);
 });
 
 // add text if no entries are present
