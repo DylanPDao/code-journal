@@ -8,6 +8,7 @@ const $dvEntryForm = document.querySelector('[data-view="entry-form"]');
 const $goEntries = document.querySelector('.go-entries');
 const $newBtn = document.querySelector('.new-btn');
 const $noEntry = document.querySelector('.no-entries');
+const $newEntry = document.querySelector('#new-entry-head');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -125,4 +126,9 @@ $ul.addEventListener('click', function (e) {
       data.editing = data.entries[i];
     }
   }
+  $img.setAttribute('src', data.editing.imgUrl);
+  $form.elements[0].value = data.editing.title;
+  $form.elements[1].value = data.editing.imgUrl;
+  $form.elements[2].value = data.editing.notes;
+  $newEntry.textContent = 'Edit Entry';
 });
