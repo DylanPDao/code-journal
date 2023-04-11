@@ -8,7 +8,6 @@ const $dvEntryForm = document.querySelector('[data-view="entry-form"]');
 const $goEntries = document.querySelector('.go-entries');
 const $newBtn = document.querySelector('.new-btn');
 const $noEntry = document.querySelector('.no-entries');
-// const $faIcon = document.querySelector('.fa-icon');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -119,5 +118,11 @@ $ul.addEventListener('click', function (e) {
   if (e.target.className !== 'fa fa-pencil') {
     return;
   }
+  const target = event.target.closest('[data-entry-id]').dataset.entryId;
   viewSwap('entry-form');
+  for (let i = 0; i < data.entries.length; i++) {
+    if (target === (data.entries[i].entryId).toString()) {
+      data.editing = data.entries[i];
+    }
+  }
 });
