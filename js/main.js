@@ -26,6 +26,10 @@ $form.addEventListener('submit', function (e) {
   data.entries.unshift(journalEntry);
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  const $li = document.createElement('li');
+  $li.appendChild(renderEntry(data.entries[0]));
+  $ul.prepend($li);
+  toggleNoEntries();
 });
 
 // render entries
@@ -69,16 +73,20 @@ document.addEventListener('DOMContentLoaded', function (e) {
   }
 });
 
-// function toggleNoEntries() {
-//   if (data.entries.length === 0) {
-//     const noEntries = document.createElement('div');
-//     noEntries.textContent = 'No entries have been recorded';
-//     noEntries.className = 'no-entries';
-//     const $li = document.createElement('li');
-//     $li.appendChild(noEntries);
-//     $ul.appendChild($li);
-//   }
-// }
+function toggleNoEntries() {
+  if (data.entries.length === 0) {
+    const noEntries = document.createElement('div');
+    noEntries.textContent = 'No entries have been recorded';
+    noEntries.className = 'no-entries';
+    const $li = document.createElement('li');
+    $li.appendChild(noEntries);
+    $ul.appendChild($li);
+  }
+  if (data.entries.length !== 0) {
+    const noEntries = document.querySelector('.no-entries');
+    noEntries.remove();
+  }
+}
 
 function viewSwap(view) {
   if (view === $dvEntryForm.dataset.view) {
@@ -93,6 +101,7 @@ function viewSwap(view) {
 
 $goEntries.addEventListener('click', function (e) {
   viewSwap('entries');
+  toggleNoEntries();
 });
 
 $newBtn.addEventListener('click', function (e) {
