@@ -62,3 +62,7 @@ ul {
 .sv-btn:hover {
   cursor: pointer;
 }
+
+.fa {
+  color: #552b80;
+}

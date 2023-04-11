@@ -8,6 +8,7 @@ const $dvEntryForm = document.querySelector('[data-view="entry-form"]');
 const $goEntries = document.querySelector('.go-entries');
 const $newBtn = document.querySelector('.new-btn');
 const $noEntry = document.querySelector('.no-entries');
+// const $faIcon = document.querySelector('.fa-icon');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -45,8 +46,13 @@ function renderEntry(entry) {
   // div to house title, and notes
   const $infoDiv = document.createElement('div');
   $infoDiv.className = 'column-half';
+  const $row2 = document.createElement('div');
+  $row2.className = 'row entries-row';
   const $titleDiv = document.createElement('div');
   $titleDiv.className = 'label-head li-head';
+  const $icon = document.createElement('i');
+  $icon.className = 'fa fa-pencil';
+  $icon.setAttribute('aria-hidden', true);
   const $notesDiv = document.createElement('div');
   $notesDiv.className = 'notesText notes-text';
 
@@ -55,13 +61,18 @@ function renderEntry(entry) {
   $titleDiv.textContent = entry.title;
   $notesDiv.textContent = entry.notes;
 
+  // append
   $row1.appendChild($pictureDiv);
   $pictureDiv.appendChild($imgDiv);
+
   $row1.appendChild($infoDiv);
-  $infoDiv.appendChild($titleDiv);
+  $infoDiv.appendChild($row2);
+  $row2.appendChild($titleDiv);
+  $row2.appendChild($icon);
   $infoDiv.appendChild($notesDiv);
 
   const $li = document.createElement('li');
+  $li.setAttribute('data-entry-id', entry.entryId);
   $li.appendChild($row1);
   return $li;
 }
@@ -101,5 +112,12 @@ $goEntries.addEventListener('click', function (e) {
   viewSwap('entries');
 });
 $newBtn.addEventListener('click', function (e) {
+  viewSwap('entry-form');
+});
+
+$ul.addEventListener('click', function (e) {
+  if (e.target.className !== 'fa fa-pencil') {
+    return;
+  }
   viewSwap('entry-form');
 });

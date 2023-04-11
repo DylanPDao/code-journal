@@ -14,7 +14,8 @@
 }
 
 .column-full,
-.column-half {
+.column-half,
+.column-25 {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -26,11 +27,16 @@
   }
 
   .column-full,
-  .column-half {
+  .column-half,
+  .column-25 {
     padding: 0 0.75rem;
   }
 
   .column-half {
     width: 50%;
   }
+}
+
+.column-25 {
+  width: 25%;
 }
