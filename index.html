@@ -20,6 +20,7 @@
     <div class="container">
       <div class="row">
         <p class="header">Code Journal</p>
+        <p class="header go-entries">Entries</p>
       </div>
     </div>
   </header>
@@ -51,7 +52,16 @@
         </div>
       </form>
     </div>
-    <div data-view="entries" class="hidden"></div>
+    <div data-view="entries" class="hidden">
+      <div class="row entries-row">
+        <h2 class="entry-header">Entries</h2>
+        <button class="sv-btn new-btn">New</button>
+      </div>
+      <div class="no-entries">No entries have been recorded</div>
+      <ul>
+
+      </ul>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
