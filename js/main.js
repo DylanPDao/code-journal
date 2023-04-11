@@ -3,6 +3,10 @@ const $img = document.querySelector('.img-up');
 const $urlBox = document.querySelector('#url-box');
 const $form = document.querySelector('form');
 const $ul = document.querySelector('ul');
+const $dvEntries = document.querySelector('[data-view="entries"]');
+const $dvEntryForm = document.querySelector('[data-view="entry-form"]');
+const $goEntries = document.querySelector('.go-entries');
+const $newBtn = document.querySelector('.new-btn');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -63,4 +67,34 @@ document.addEventListener('DOMContentLoaded', function (e) {
     $li.appendChild(renderEntry(data.entries[i]));
     $ul.appendChild($li);
   }
+});
+
+// function toggleNoEntries() {
+//   if (data.entries.length === 0) {
+//     const noEntries = document.createElement('div');
+//     noEntries.textContent = 'No entries have been recorded';
+//     noEntries.className = 'no-entries';
+//     const $li = document.createElement('li');
+//     $li.appendChild(noEntries);
+//     $ul.appendChild($li);
+//   }
+// }
+
+function viewSwap(view) {
+  if (view === $dvEntryForm.dataset.view) {
+    $dvEntryForm.className = 'not-hidden';
+    $dvEntries.className = 'hidden';
+  }
+  if (view === $dvEntries.dataset.view) {
+    $dvEntries.className = 'not-hidden';
+    $dvEntryForm.className = 'hidden';
+  }
+}
+
+$goEntries.addEventListener('click', function (e) {
+  viewSwap('entries');
+});
+
+$newBtn.addEventListener('click', function (e) {
+  viewSwap('entry-form');
 });
