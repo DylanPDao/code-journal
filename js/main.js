@@ -2,6 +2,7 @@
 const $img = document.querySelector('.img-up');
 const $urlBox = document.querySelector('#url-box');
 const $form = document.querySelector('form');
+const $ul = document.querySelector('ul');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -56,7 +57,10 @@ function renderEntry(entry) {
 
   return row1;
 }
-renderEntry();
-// for (let i = 0; i < data.entries.length; i++) {
-
-// }
+document.addEventListener('DOMContentLoaded', function (e) {
+  for (let i = 0; i < data.entries.length; i++) {
+    const $li = document.createElement('li');
+    $li.appendChild(renderEntry(data.entries[i]));
+    $ul.appendChild($li);
+  }
+});
