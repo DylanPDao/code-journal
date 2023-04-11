@@ -43,3 +43,8 @@ textarea:focus {
 ul {
   list-style-type: none;
 }
+
+.li-head {
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}

@@ -33,16 +33,16 @@ function renderEntry(entry) {
   // div to house image
   const pictureDiv = document.createElement('div');
   pictureDiv.className = 'column-half';
-  const imgDiv = document.createElement('div');
+  const imgDiv = document.createElement('img');
   imgDiv.className = 'img-up';
 
   // div to house title, and notes
   const infoDiv = document.createElement('div');
   infoDiv.className = 'column-half';
   const titleDiv = document.createElement('div');
-  titleDiv.className = 'label-head';
+  titleDiv.className = 'label-head li-head';
   const notesDiv = document.createElement('div');
-  notesDiv.className = 'notesText';
+  notesDiv.className = 'notesText notes-text';
 
   // give value to each element
   imgDiv.setAttribute('src', entry.imgUrl);
