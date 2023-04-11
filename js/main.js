@@ -65,14 +65,21 @@ function renderEntry(entry) {
 
   return row1;
 }
+
+// append all old entries in
 document.addEventListener('DOMContentLoaded', function (e) {
   for (let i = 0; i < data.entries.length; i++) {
     const $li = document.createElement('li');
     $li.appendChild(renderEntry(data.entries[i]));
     $ul.appendChild($li);
   }
+  if (data.view === 'entries') {
+    viewSwap('entries');
+    toggleNoEntries();
+  }
 });
 
+// add text if no entries are present
 function toggleNoEntries() {
   if (data.entries.length === 0) {
     const noEntries = document.createElement('div');
@@ -88,6 +95,7 @@ function toggleNoEntries() {
   }
 }
 
+// swaps views
 function viewSwap(view) {
   if (view === $dvEntryForm.dataset.view) {
     $dvEntryForm.className = 'not-hidden';
@@ -99,11 +107,12 @@ function viewSwap(view) {
   }
 }
 
+// press buttons to switch views
 $goEntries.addEventListener('click', function (e) {
   viewSwap('entries');
-  toggleNoEntries();
+  data.view = 'entries';
 });
-
 $newBtn.addEventListener('click', function (e) {
   viewSwap('entry-form');
+  data.view = 'entry-form';
 });
