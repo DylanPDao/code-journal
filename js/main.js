@@ -141,7 +141,6 @@ $ul.addEventListener('click', function (e) {
     return;
   }
   const target = event.target.closest('[data-entry-id]').dataset.entryId;
-  viewSwap('entry-form');
   for (let i = 0; i < data.entries.length; i++) {
     if (target === (data.entries[i].entryId).toString()) {
       data.editing = data.entries[i];
@@ -152,4 +151,5 @@ $ul.addEventListener('click', function (e) {
   $form.elements[1].value = data.editing.imgUrl;
   $form.elements[2].value = data.editing.notes;
   $newEntry.textContent = 'Edit Entry';
+  viewSwap('entry-form');
 });
