@@ -36,7 +36,15 @@ $form.addEventListener('submit', function (e) {
     journalEntry.imgUrl = $form.elements[1].value;
     journalEntry.notes = $form.elements[2].value;
     journalEntry.entryId = data.editing.entryId;
-    renderEntry(journalEntry);
+    data.entries.splice(data.entries.length - data.editing.entryId, 1, journalEntry);
+
+    const $allLi = document.querySelectorAll('li');
+    const $edit = renderEntry(journalEntry);
+    for (let i = 0; i < $allLi.length; i++) {
+      if (data.editing.entryId === Number($allLi[i].getAttribute('data-entry-id'))) {
+        $allLi[i].replaceWith($edit);
+      }
+    }
     $form.reset();
     $newEntry.textContent = 'New Entry';
     data.editing = null;
