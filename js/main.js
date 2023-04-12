@@ -37,7 +37,6 @@ $form.addEventListener('submit', function (e) {
     journalEntry.notes = $form.elements[2].value;
     journalEntry.entryId = data.editing.entryId;
     data.entries.splice(data.entries.length - data.editing.entryId, 1, journalEntry);
-
     const $allLi = document.querySelectorAll('li');
     const $edit = renderEntry(journalEntry);
     for (let i = 0; i < $allLi.length; i++) {

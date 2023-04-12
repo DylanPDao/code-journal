@@ -15,6 +15,20 @@ header {
   align-items: flex-end;
 }
 
+/* .btn-row {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-btn {
+  border: 0;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  background-color: white;
+  color: red;
+  border-bottom: 1px solid red;
+} */
+
 .label-head {
   padding-top: 1rem;
   padding-bottom: 0.25rem;
@@ -65,4 +79,8 @@ ul {
 
 .fa {
   color: #552b80;
+}
+
+.notes-text {
+  white-space: pre-wrap;
 }
