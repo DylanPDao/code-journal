@@ -4,19 +4,13 @@ header {
   color: white;
 }
 
-.btn-row {
-  width: 98%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
 .delete-btn {
   border: 0;
   border-radius: 0.25rem;
-  margin-top: 0.5rem;
   background-color: white;
   color: red;
   text-decoration: underline;
+  padding-left: 0;
 }
 
 .sv-btn {
@@ -24,12 +18,15 @@ header {
   border-radius: 0.25rem;
   padding: 0.25rem 0.6rem;
   margin-top: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .submit-half {
-  display: flex;
-  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.delete-half {
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .label-head {
@@ -107,47 +104,25 @@ ul {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   background-color: #474e5d;
   opacity: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
   border-radius: 0.5rem;
-  position: absolute;
   background-color: #fefefe;
-  margin: 17%;
-  top: 30%;
   border: 1px solid #888;
-  height: 5rem;
-  width: 15rem;
 }
 
 .modal-header-text {
   font-size: 0.8rem;
   text-align: center;
   font-weight: bold;
-}
-
-@media screen and (min-width: 740px) {
-  .modal-content {
-    top: 20%;
-    margin: 10%;
-    left: 25%;
-    width: 16rem;
-    height: 5rem;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .modal-content {
-    top: 20%;
-    margin: 10%;
-    left: 25%;
-    height: 6rem;
-    width: 18rem;
-  }
 }
 
 /* hover effect for pointe */
