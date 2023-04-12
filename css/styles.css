@@ -18,6 +18,12 @@ header {
   border-radius: 0.25rem;
   padding: 0.25rem 0.6rem;
   margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.submit-half {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .label-head {
