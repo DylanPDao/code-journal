@@ -11,6 +11,8 @@ const $noEntry = document.querySelector('.no-entries');
 const $newEntry = document.querySelector('#new-entry-head');
 const $delete = document.querySelector('.delete-btn');
 const $modal = document.querySelector('.modal');
+const $cancelBtn = document.querySelector('.cancel-btn');
+const $confirmBtn = document.querySelector('.confirm-btn');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -50,7 +52,7 @@ $form.addEventListener('submit', function (e) {
     $form.reset();
     $newEntry.textContent = 'New Entry';
     data.editing = null;
-    $delete.className = 'delete-btn hidden';
+    // $delete.className = 'delete-btn hidden';
     viewSwap('entries');
   }
 });
@@ -159,5 +161,23 @@ $ul.addEventListener('click', function (e) {
 });
 
 $delete.addEventListener('click', function (e) {
+  e.preventDefault();
   $modal.classList.remove('hidden');
+});
+
+$cancelBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  $modal.classList.add('hidden');
+});
+
+$confirmBtn.addEventListener('click', function (e) {
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.editing.entryId === data.entries[i].entryId) {
+      data.entries.splice(i, 1);
+    }
+  }
+  toggleNoEntries();
+  $modal.classList.add('hidden');
+  data.editing = null;
+  viewSwap('entries');
 });

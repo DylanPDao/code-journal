@@ -73,13 +73,6 @@ ul {
   color: #552b80;
 }
 
-.go-entries:hover,
-.sv-btn:hover,
-.fa:hover,
-.delete-btn {
-  cursor: pointer;
-}
-
 .notes-text {
   white-space: pre-wrap;
 }
@@ -149,4 +142,14 @@ ul {
     height: 6rem;
     width: 18rem;
   }
+}
+
+/* hover effect for pointer */
+.go-entries:hover,
+.sv-btn:hover,
+.fa:hover,
+.delete-btn,
+.cancel-btn,
+.confirm-btn {
+  cursor: pointer;
 }
