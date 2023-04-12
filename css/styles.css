@@ -4,11 +4,6 @@ header {
   color: white;
 }
 
-.btn-row {
-  justify-content: space-between;
-  align-items: center;
-}
-
 .delete-btn {
   border: 0;
   border-radius: 0.25rem;
