@@ -11,13 +11,9 @@ header {
   margin-top: 0.5rem;
 }
 
-.btn-column {
-  align-items: flex-end;
-}
-
-/* .btn-row {
-  align-items: center;
+.btn-row {
   justify-content: space-between;
+  align-items: center;
 }
 
 .delete-btn {
@@ -27,7 +23,7 @@ header {
   background-color: white;
   color: red;
   border-bottom: 1px solid red;
-} */
+}
 
 .label-head {
   padding-top: 1rem;

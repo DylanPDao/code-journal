@@ -47,6 +47,7 @@ $form.addEventListener('submit', function (e) {
     $form.reset();
     $newEntry.textContent = 'New Entry';
     data.editing = null;
+    viewSwap('entries');
   }
 });
 
