@@ -30,6 +30,7 @@ $form.addEventListener('submit', function (e) {
     $img.setAttribute('src', 'images/placeholder-image-square.jpg');
     $form.reset();
     $ul.prepend(renderEntry(journalEntry));
+    viewSwap('entries');
   } else {
     const journalEntry = {};
     journalEntry.title = $form.elements[0].value;
