@@ -31,9 +31,10 @@ $form.addEventListener('submit', function (e) {
     journalEntry.entryId = data.nextEntryId;
     data.nextEntryId++;
     data.entries.unshift(journalEntry);
+    $ul.prepend(renderEntry(journalEntry));
     $img.setAttribute('src', 'images/placeholder-image-square.jpg');
     $form.reset();
-    $ul.prepend(renderEntry(journalEntry));
+    $delete.className = 'delete-btn hidden';
     viewSwap('entries');
   } else {
     const journalEntry = {};
@@ -49,10 +50,12 @@ $form.addEventListener('submit', function (e) {
         $allLi[i].replaceWith($edit);
       }
     }
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
     $form.reset();
+    $delete.className = 'delete-btn hidden';
     $newEntry.textContent = 'New Entry';
+    $delete.classList.add('hidden');
     data.editing = null;
-    // $delete.className = 'delete-btn hidden';
     viewSwap('entries');
   }
 });
@@ -115,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function (e) {
 function toggleNoEntries() {
   if (data.entries.length > 0) {
     $noEntry.className = 'no-entries hidden';
+  } else {
+    $noEntry.className = 'no-entries';
   }
 }
 
@@ -137,6 +142,7 @@ function viewSwap(view) {
 $goEntries.addEventListener('click', function (e) {
   viewSwap('entries');
 });
+
 $newBtn.addEventListener('click', function (e) {
   viewSwap('entry-form');
 });
@@ -176,8 +182,17 @@ $confirmBtn.addEventListener('click', function (e) {
       data.entries.splice(i, 1);
     }
   }
+  const $allLi = document.querySelectorAll('li');
+  for (let i = 0; i < $allLi.length; i++) {
+    if (data.editing.entryId === Number($allLi[i].getAttribute('data-entry-id'))) {
+      $allLi[i].remove();
+    }
+  }
   toggleNoEntries();
   $modal.classList.add('hidden');
   data.editing = null;
+  $form.reset();
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $delete.className = 'delete-btn hidden';
   viewSwap('entries');
 });
