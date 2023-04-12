@@ -69,13 +69,15 @@ ul {
   justify-content: space-between;
 }
 
-.go-entries:hover,
-.sv-btn:hover {
-  cursor: pointer;
-}
-
 .fa {
   color: #552b80;
+}
+
+.go-entries:hover,
+.sv-btn:hover,
+.fa:hover,
+.delete-btn {
+  cursor: pointer;
 }
 
 .notes-text {
@@ -109,7 +111,7 @@ ul {
   width: 100%;
   height: 100%;
   background-color: #474e5d;
-  opacity: 90%;
+  opacity: 98%;
 }
 
 .modal-content {

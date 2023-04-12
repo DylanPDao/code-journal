@@ -10,6 +10,7 @@ const $newBtn = document.querySelector('.new-btn');
 const $noEntry = document.querySelector('.no-entries');
 const $newEntry = document.querySelector('#new-entry-head');
 const $delete = document.querySelector('.delete-btn');
+const $modal = document.querySelector('.modal');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -19,8 +20,8 @@ $urlBox.addEventListener('input', function (e) {
 
 // Submit button function and reset
 $form.addEventListener('submit', function (e) {
+  event.preventDefault();
   if (data.editing === null) {
-    event.preventDefault();
     const journalEntry = {};
     journalEntry.title = event.target.elements[0].value;
     journalEntry.imgUrl = event.target.elements[1].value;
@@ -155,4 +156,8 @@ $ul.addEventListener('click', function (e) {
   $newEntry.textContent = 'Edit Entry';
   $delete.className = 'delete-btn';
   viewSwap('entry-form');
+});
+
+$delete.addEventListener('click', function (e) {
+  $modal.classList.remove('hidden');
 });
