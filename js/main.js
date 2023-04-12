@@ -9,6 +9,7 @@ const $goEntries = document.querySelector('.go-entries');
 const $newBtn = document.querySelector('.new-btn');
 const $noEntry = document.querySelector('.no-entries');
 const $newEntry = document.querySelector('#new-entry-head');
+const $delete = document.querySelector('.delete-btn');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -48,6 +49,7 @@ $form.addEventListener('submit', function (e) {
     $form.reset();
     $newEntry.textContent = 'New Entry';
     data.editing = null;
+    $delete.className = 'delete-btn hidden';
     viewSwap('entries');
   }
 });
@@ -151,5 +153,6 @@ $ul.addEventListener('click', function (e) {
   $form.elements[1].value = data.editing.imgUrl;
   $form.elements[2].value = data.editing.notes;
   $newEntry.textContent = 'Edit Entry';
+  $delete.className = 'delete-btn';
   viewSwap('entry-form');
 });
