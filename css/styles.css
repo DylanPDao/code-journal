@@ -4,15 +4,20 @@ header {
   color: white;
 }
 
+.delete-btn {
+  border: 0;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  background-color: white;
+  color: red;
+  text-decoration: underline;
+}
+
 .sv-btn {
   border: 0;
   border-radius: 0.25rem;
   padding: 0.25rem 0.6rem;
   margin-top: 0.5rem;
-}
-
-.btn-column {
-  align-items: flex-end;
 }
 
 .label-head {
@@ -61,4 +66,12 @@ ul {
 .go-entries:hover,
 .sv-btn:hover {
   cursor: pointer;
+}
+
+.fa {
+  color: #552b80;
+}
+
+.notes-text {
+  white-space: pre-wrap;
 }

@@ -8,6 +8,7 @@ const $dvEntryForm = document.querySelector('[data-view="entry-form"]');
 const $goEntries = document.querySelector('.go-entries');
 const $newBtn = document.querySelector('.new-btn');
 const $noEntry = document.querySelector('.no-entries');
+const $newEntry = document.querySelector('#new-entry-head');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -17,17 +18,38 @@ $urlBox.addEventListener('input', function (e) {
 
 // Submit button function and reset
 $form.addEventListener('submit', function (e) {
-  event.preventDefault();
-  const journalEntry = {};
-  journalEntry.title = event.target.elements[0].value;
-  journalEntry.imgUrl = event.target.elements[1].value;
-  journalEntry.notes = event.target.elements[2].value;
-  journalEntry.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(journalEntry);
-  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
-  $ul.prepend(renderEntry(journalEntry));
+  if (data.editing === null) {
+    event.preventDefault();
+    const journalEntry = {};
+    journalEntry.title = event.target.elements[0].value;
+    journalEntry.imgUrl = event.target.elements[1].value;
+    journalEntry.notes = event.target.elements[2].value;
+    journalEntry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(journalEntry);
+    $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $form.reset();
+    $ul.prepend(renderEntry(journalEntry));
+    viewSwap('entries');
+  } else {
+    const journalEntry = {};
+    journalEntry.title = $form.elements[0].value;
+    journalEntry.imgUrl = $form.elements[1].value;
+    journalEntry.notes = $form.elements[2].value;
+    journalEntry.entryId = data.editing.entryId;
+    data.entries.splice(data.entries.length - data.editing.entryId, 1, journalEntry);
+    const $allLi = document.querySelectorAll('li');
+    const $edit = renderEntry(journalEntry);
+    for (let i = 0; i < $allLi.length; i++) {
+      if (data.editing.entryId === Number($allLi[i].getAttribute('data-entry-id'))) {
+        $allLi[i].replaceWith($edit);
+      }
+    }
+    $form.reset();
+    $newEntry.textContent = 'New Entry';
+    data.editing = null;
+    viewSwap('entries');
+  }
 });
 
 // render entries
@@ -45,8 +67,13 @@ function renderEntry(entry) {
   // div to house title, and notes
   const $infoDiv = document.createElement('div');
   $infoDiv.className = 'column-half';
+  const $row2 = document.createElement('div');
+  $row2.className = 'row entries-row';
   const $titleDiv = document.createElement('div');
   $titleDiv.className = 'label-head li-head';
+  const $icon = document.createElement('i');
+  $icon.className = 'fa fa-pencil';
+  $icon.setAttribute('aria-hidden', true);
   const $notesDiv = document.createElement('div');
   $notesDiv.className = 'notesText notes-text';
 
@@ -55,13 +82,18 @@ function renderEntry(entry) {
   $titleDiv.textContent = entry.title;
   $notesDiv.textContent = entry.notes;
 
+  // append
   $row1.appendChild($pictureDiv);
   $pictureDiv.appendChild($imgDiv);
+
   $row1.appendChild($infoDiv);
-  $infoDiv.appendChild($titleDiv);
+  $infoDiv.appendChild($row2);
+  $row2.appendChild($titleDiv);
+  $row2.appendChild($icon);
   $infoDiv.appendChild($notesDiv);
 
   const $li = document.createElement('li');
+  $li.setAttribute('data-entry-id', entry.entryId);
   $li.appendChild($row1);
   return $li;
 }
@@ -101,5 +133,23 @@ $goEntries.addEventListener('click', function (e) {
   viewSwap('entries');
 });
 $newBtn.addEventListener('click', function (e) {
+  viewSwap('entry-form');
+});
+
+$ul.addEventListener('click', function (e) {
+  if (e.target.className !== 'fa fa-pencil') {
+    return;
+  }
+  const target = event.target.closest('[data-entry-id]').dataset.entryId;
+  for (let i = 0; i < data.entries.length; i++) {
+    if (target === (data.entries[i].entryId).toString()) {
+      data.editing = data.entries[i];
+    }
+  }
+  $img.setAttribute('src', data.editing.imgUrl);
+  $form.elements[0].value = data.editing.title;
+  $form.elements[1].value = data.editing.imgUrl;
+  $form.elements[2].value = data.editing.notes;
+  $newEntry.textContent = 'Edit Entry';
   viewSwap('entry-form');
 });
