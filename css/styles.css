@@ -4,6 +4,12 @@ header {
   color: white;
 }
 
+.btn-row {
+  width: 98%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .delete-btn {
   border: 0;
   border-radius: 0.25rem;
@@ -144,7 +150,7 @@ ul {
   }
 }
 
-/* hover effect for pointer */
+/* hover effect for pointe */
 .go-entries:hover,
 .sv-btn:hover,
 .fa:hover,

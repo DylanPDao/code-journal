@@ -145,6 +145,10 @@ $goEntries.addEventListener('click', function (e) {
 
 $newBtn.addEventListener('click', function (e) {
   viewSwap('entry-form');
+  $form.reset();
+  $img.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $delete.className = 'delete-btn hidden';
+  data.editing = null;
 });
 
 $ul.addEventListener('click', function (e) {
