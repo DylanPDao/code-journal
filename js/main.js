@@ -201,7 +201,7 @@ $confirmBtn.addEventListener('click', function (e) {
   viewSwap('entries');
 });
 
-// get searchbar to open when clicking the question mark
+// get searchbar to open when clicking the question mark switch
 const $questionMark = document.querySelector('.fa-question-circle');
 const $searchBar = document.querySelector('.search-bar');
 $questionMark.addEventListener('click', function (e) {
