@@ -7,10 +7,10 @@ header {
 .delete-btn {
   border: 0;
   border-radius: 0.25rem;
-  margin-top: 0.5rem;
   background-color: white;
   color: red;
   text-decoration: underline;
+  padding-left: 0;
 }
 
 .sv-btn {
@@ -18,6 +18,15 @@ header {
   border-radius: 0.25rem;
   padding: 0.25rem 0.6rem;
   margin-top: 0.5rem;
+}
+
+.submit-half {
+  align-items: flex-end;
+}
+
+.delete-half {
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .label-head {
@@ -63,15 +72,65 @@ ul {
   justify-content: space-between;
 }
 
-.go-entries:hover,
-.sv-btn:hover {
-  cursor: pointer;
-}
-
 .fa {
   color: #552b80;
 }
 
 .notes-text {
   white-space: pre-wrap;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.confirm-btn {
+  background-color: red;
+  color: white;
+}
+
+/* modal styling */
+.confirm-btn,
+.cancel-btn {
+  border: 0;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  margin: 0.5rem;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #474e5d;
+  opacity: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+  background-color: #fefefe;
+  border: 1px solid #888;
+}
+
+.modal-header-text {
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* hover effect for pointe */
+.go-entries:hover,
+.sv-btn:hover,
+.fa:hover,
+.delete-btn,
+.cancel-btn,
+.confirm-btn {
+  cursor: pointer;
 }
