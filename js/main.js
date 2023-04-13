@@ -222,40 +222,56 @@ $searchBar.addEventListener('focusout', function (e) {
 // make search bar work
 $searchBar.addEventListener('search', function (e) {
   const $searchValue = $searchBar.value;
+  const searchValueArr = [];
   const $allLi = document.querySelectorAll('li');
   // make searchbar work with partial text value
-  for (let i = 0; i < data.entries.length; i++) {
-    const $searchValueLower = $searchValue.toLowerCase();
-    const titleLower = data.entries[i].title.toLowerCase();
-    if (titleLower.includes($searchValueLower) === true) {
-      return;
+  if (isNaN($searchValue) === true) {
+    for (let i = 0; i < data.entries.length; i++) {
+      const $searchValueLower = $searchValue.toLowerCase();
+      const titleLower = data.entries[i].title.toLowerCase();
+      if (titleLower.includes($searchValueLower) === true) {
+        searchValueArr.push(data.entries[i].entryId);
+      }
+    }
+    for (let i = 0; i < $allLi.length; i++) {
+      for (let j = 0; j < searchValueArr.length; j++) {
+        if (searchValueArr[j] === Number($allLi[i].getAttribute(['data-entry-id']))) {
+          $allLi[i].className = 'found';
+        }
+      }
+    }
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($allLi[i].classList.contains('found') !== true) {
+        $allLi[i].classList.add('hidden');
+      }
     }
   }
-
   // works with entry ID
-  for (let i = 0; i < $allLi.length; i++) {
-    if ($searchValue !== $allLi[i].getAttribute(['data-entry-id'])) {
-      $allLi[i].className = 'hidden';
-    } else {
-      $allLi[i].className = 'found';
-      $found.classList.add('hidden');
+  if (isNaN($searchValue) === false) {
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($searchValue !== $allLi[i].getAttribute(['data-entry-id'])) {
+        $allLi[i].className = 'hidden';
+      } else {
+        $allLi[i].className = 'found';
+        $found.classList.add('hidden');
+      }
     }
-  }
-  // show none found if all li are hidden
-  for (let i = 0; i < $allLi.length; i++) {
-    if ($allLi[i].className.includes('hidden') === true) {
-      $found.classList.remove('hidden');
+    // show none found if all li are hidden
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($allLi[i].className.includes('hidden') === true) {
+        $found.classList.remove('hidden');
+      }
     }
-  }
-  for (let i = 0; i < $allLi.length; i++) {
-  // turn off none found if there is a found
-    if ($allLi[i].className.includes('found') === true) {
-      $found.classList.add('hidden');
+    for (let i = 0; i < $allLi.length; i++) {
+      // turn off none found if there is a found
+      if ($allLi[i].className.includes('found') === true) {
+        $found.classList.add('hidden');
+      }
     }
-  }
-  for (let i = 0; i < $allLi.length; i++) {
-    if ($allLi[i].className.includes('found') === true) {
-      $allLi[i].classList.remove('found');
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($allLi[i].className.includes('found') === true) {
+        $allLi[i].classList.remove('found');
+      }
     }
   }
   $searchBar.value = '';
