@@ -200,3 +200,16 @@ $confirmBtn.addEventListener('click', function (e) {
   $delete.className = 'delete-btn hidden';
   viewSwap('entries');
 });
+
+// get searchbar to open when clicking the question mark
+const $questionMark = document.querySelector('.fa-question-circle');
+const $searchBar = document.querySelector('.search-bar');
+$questionMark.addEventListener('click', function (e) {
+  $questionMark.style.opacity = 0;
+  $searchBar.style.opacity = 1;
+  $searchBar.focus();
+});
+$searchBar.addEventListener('focusout', function (e) {
+  $searchBar.style.opacity = 0;
+  $questionMark.style.opacity = 1;
+});
