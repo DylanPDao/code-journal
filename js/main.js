@@ -223,6 +223,16 @@ $searchBar.addEventListener('focusout', function (e) {
 $searchBar.addEventListener('search', function (e) {
   const $searchValue = $searchBar.value;
   const $allLi = document.querySelectorAll('li');
+  // make searchbar work with partial text value
+  for (let i = 0; i < data.entries.length; i++) {
+    const $searchValueLower = $searchValue.toLowerCase();
+    const titleLower = data.entries[i].title.toLowerCase();
+    if (titleLower.includes($searchValueLower) === true) {
+      return;
+    }
+  }
+
+  // works with entry ID
   for (let i = 0; i < $allLi.length; i++) {
     if ($searchValue !== $allLi[i].getAttribute(['data-entry-id'])) {
       $allLi[i].className = 'hidden';
