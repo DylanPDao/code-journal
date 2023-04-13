@@ -13,6 +13,7 @@ const $delete = document.querySelector('.delete-btn');
 const $modal = document.querySelector('.modal');
 const $cancelBtn = document.querySelector('.cancel-btn');
 const $confirmBtn = document.querySelector('.confirm-btn');
+const $found = document.querySelector('.not-found');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -225,6 +226,26 @@ $searchBar.addEventListener('search', function (e) {
   for (let i = 0; i < $allLi.length; i++) {
     if ($searchValue !== $allLi[i].getAttribute(['data-entry-id'])) {
       $allLi[i].className = 'hidden';
+    } else {
+      $allLi[i].className = 'found';
+      $found.classList.add('hidden');
+    }
+  }
+  // show none found if all li are hidden
+  for (let i = 0; i < $allLi.length; i++) {
+    if ($allLi[i].className.includes('hidden') === true) {
+      $found.classList.remove('hidden');
+    }
+  }
+  for (let i = 0; i < $allLi.length; i++) {
+  // turn off none found if there is a found
+    if ($allLi[i].className.includes('found') === true) {
+      $found.classList.add('hidden');
+    }
+  }
+  for (let i = 0; i < $allLi.length; i++) {
+    if ($allLi[i].className.includes('found') === true) {
+      $allLi[i].classList.remove('found');
     }
   }
   $searchBar.value = '';
