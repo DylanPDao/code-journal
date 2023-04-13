@@ -75,6 +75,8 @@ function renderEntry(entry) {
   // div to house title, and notes
   const $infoDiv = document.createElement('div');
   $infoDiv.className = 'column-half';
+  const $entryNumber = document.createElement('div');
+  $entryNumber.className = 'label-head entry-number';
   const $row2 = document.createElement('div');
   $row2.className = 'row entries-row';
   const $titleDiv = document.createElement('div');
@@ -89,12 +91,14 @@ function renderEntry(entry) {
   $imgDiv.setAttribute('src', entry.imgUrl);
   $titleDiv.textContent = entry.title;
   $notesDiv.textContent = entry.notes;
+  $entryNumber.textContent = 'Entry Number: ' + entry.entryId;
 
   // append
   $row1.appendChild($pictureDiv);
   $pictureDiv.appendChild($imgDiv);
 
   $row1.appendChild($infoDiv);
+  $infoDiv.appendChild($entryNumber);
   $infoDiv.appendChild($row2);
   $row2.appendChild($titleDiv);
   $row2.appendChild($icon);
@@ -212,4 +216,16 @@ $questionMark.addEventListener('click', function (e) {
 $searchBar.addEventListener('focusout', function (e) {
   $searchBar.style.opacity = 0;
   $questionMark.style.opacity = 1;
+});
+
+// make search bar work
+$searchBar.addEventListener('search', function (e) {
+  const $searchValue = $searchBar.value;
+  const $allLi = document.querySelectorAll('li');
+  for (let i = 0; i < $allLi.length; i++) {
+    if ($searchValue !== $allLi[i].getAttribute(['data-entry-id'])) {
+      $allLi[i].className = 'hidden';
+    }
+  }
+  $searchBar.value = '';
 });
