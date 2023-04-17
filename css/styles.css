@@ -72,6 +72,15 @@ ul {
   justify-content: space-between;
 }
 
+.search-row {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.search-container {
+  margin-top: 0.5rem;
+}
+
 .fa {
   color: #552b80;
 }
@@ -133,4 +142,39 @@ ul {
 .cancel-btn,
 .confirm-btn {
   cursor: pointer;
+}
+
+/* search bar styling and fa */
+
+.search-bar {
+  outline: none;
+  border: none;
+  background: #552b80;
+  color: white;
+  text-shadow: 0 0 10px #552b80;
+  border-radius: 50%;
+  transition: all 1s;
+  letter-spacing: 0.1em;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0;
+}
+
+.search-bar:hover {
+  cursor: pointer;
+}
+
+.search-bar:focus {
+  width: 15rem;
+  cursor: text;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 25px 0 #552b80;
+  opacity: 1;
+}
+
+.fa-question-circle {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
 }

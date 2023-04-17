@@ -60,9 +60,18 @@
     <div data-view="entries" class="hidden">
       <div class="row entries-row">
         <h2 class="entry-header">Entries</h2>
-        <button class="sv-btn new-btn">New</button>
+        <div class="column-half">
+          <div class="row search-row">
+            <div class="search-container">
+              <input class="search-bar" type="search" placeholder="Search....">
+            </div>
+            <i class="fa fa-question-circle"></i>
+            <button class="sv-btn new-btn">New</button>
+          </div>
+        </div>
       </div>
       <div class="no-entries">No entries have been recorded</div>
+      <div class="no-entries not-found hidden">No entries matching</div>
       <ul>
 
       </ul>

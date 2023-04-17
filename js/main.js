@@ -13,6 +13,7 @@ const $delete = document.querySelector('.delete-btn');
 const $modal = document.querySelector('.modal');
 const $cancelBtn = document.querySelector('.cancel-btn');
 const $confirmBtn = document.querySelector('.confirm-btn');
+const $found = document.querySelector('.not-found');
 
 // updates picture when url link is entered
 $urlBox.addEventListener('input', function (e) {
@@ -75,6 +76,8 @@ function renderEntry(entry) {
   // div to house title, and notes
   const $infoDiv = document.createElement('div');
   $infoDiv.className = 'column-half';
+  const $entryNumber = document.createElement('div');
+  $entryNumber.className = 'label-head entry-number';
   const $row2 = document.createElement('div');
   $row2.className = 'row entries-row';
   const $titleDiv = document.createElement('div');
@@ -89,12 +92,14 @@ function renderEntry(entry) {
   $imgDiv.setAttribute('src', entry.imgUrl);
   $titleDiv.textContent = entry.title;
   $notesDiv.textContent = entry.notes;
+  $entryNumber.textContent = 'Entry Number: ' + entry.entryId;
 
   // append
   $row1.appendChild($pictureDiv);
   $pictureDiv.appendChild($imgDiv);
 
   $row1.appendChild($infoDiv);
+  $infoDiv.appendChild($entryNumber);
   $infoDiv.appendChild($row2);
   $row2.appendChild($titleDiv);
   $row2.appendChild($icon);
@@ -199,4 +204,75 @@ $confirmBtn.addEventListener('click', function (e) {
   $img.setAttribute('src', 'images/placeholder-image-square.jpg');
   $delete.className = 'delete-btn hidden';
   viewSwap('entries');
+});
+
+// get searchbar to open when clicking the question mark switch
+const $questionMark = document.querySelector('.fa-question-circle');
+const $searchBar = document.querySelector('.search-bar');
+$questionMark.addEventListener('click', function (e) {
+  $questionMark.style.opacity = 0;
+  $searchBar.style.opacity = 1;
+  $searchBar.focus();
+});
+$searchBar.addEventListener('focusout', function (e) {
+  $searchBar.style.opacity = 0;
+  $questionMark.style.opacity = 1;
+});
+
+// make search bar work
+$searchBar.addEventListener('search', function (e) {
+  const $searchValue = $searchBar.value;
+  const searchValueArr = [];
+  const $allLi = document.querySelectorAll('li');
+  // make searchbar work with partial text value
+  if (isNaN($searchValue) === true) {
+    for (let i = 0; i < data.entries.length; i++) {
+      const $searchValueLower = $searchValue.toLowerCase();
+      const titleLower = data.entries[i].title.toLowerCase();
+      if (titleLower.includes($searchValueLower) === true) {
+        searchValueArr.push(data.entries[i].entryId);
+      }
+    }
+    for (let i = 0; i < $allLi.length; i++) {
+      for (let j = 0; j < searchValueArr.length; j++) {
+        if (searchValueArr[j] === Number($allLi[i].getAttribute(['data-entry-id']))) {
+          $allLi[i].className = 'found';
+        }
+      }
+    }
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($allLi[i].classList.contains('found') !== true) {
+        $allLi[i].classList.add('hidden');
+      }
+    }
+  }
+  // works with entry ID
+  if (isNaN($searchValue) === false) {
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($searchValue !== $allLi[i].getAttribute(['data-entry-id'])) {
+        $allLi[i].className = 'hidden';
+      } else {
+        $allLi[i].className = 'found';
+        $found.classList.add('hidden');
+      }
+    }
+    // show none found if all li are hidden
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($allLi[i].className.includes('hidden') === true) {
+        $found.classList.remove('hidden');
+      }
+    }
+    for (let i = 0; i < $allLi.length; i++) {
+      // turn off none found if there is a found
+      if ($allLi[i].className.includes('found') === true) {
+        $found.classList.add('hidden');
+      }
+    }
+    for (let i = 0; i < $allLi.length; i++) {
+      if ($allLi[i].className.includes('found') === true) {
+        $allLi[i].classList.remove('found');
+      }
+    }
+  }
+  $searchBar.value = '';
 });
